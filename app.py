@@ -28,7 +28,9 @@ model = load_model()
 st.markdown("<h1 class='centered-heading'>Vehicle Registration Plate Detection App (YoloV8)</h1>", unsafe_allow_html=True)
 
 # - Uploading multiple images
-uploaded_images = st.file_uploader("Upload an image or multiple images for vehicle registration plate detection", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+with st.form("my-form", clear_on_submit=True):
+        uploaded_images = st.file_uploader("Upload an image or multiple images for vehicle registration plate detection", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+        submitted = st.form_submit_button("submit")
 
 if uploaded_images:
     for uploaded_image in uploaded_images:
