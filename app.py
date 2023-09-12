@@ -40,10 +40,15 @@ if uploaded_images:
 
         results = model(source=image)
 
+        for result in results:
+            boxes = result.boxes
+            
+        number_of_plates = boxes.shape[0]
+
         # - Displaying the detection results for each image
         for result in results:
             im_array = result.plot()  
             im = Image.fromarray(im_array[..., ::-1])
 
             # - Display the image with bounding boxes
-            st.image(im, caption=f"Object Detection Result for Image {uploaded_images.index(uploaded_image) + 1}", use_column_width=True)
+            st.image(im, caption=f"Image {uploaded_images.index(uploaded_image) + 1}. Object Detection Result - {number_of_plates} vehicle registration plates are detected.", use_column_width=True)
